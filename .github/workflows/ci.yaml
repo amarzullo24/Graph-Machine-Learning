@@ -20,7 +20,7 @@ jobs:
         run: |
           cd docker
 
-          BRANCH=${{ github.ref_name }}
+          BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
           echo "Building for branch ${BRANCH}"
 
           docker build . -t graph-machine-learning:latest \
