@@ -1,6 +1,7 @@
 FROM jupyter/scipy-notebook
 
 ARG user=euler
+ARG branch=main
 
 USER root
 
@@ -21,7 +22,7 @@ WORKDIR /home/${user}/Graph-Machine-Learning
 
 RUN ln -s /data data
 
-RUN git checkout chap1
+RUN git checkout ${branch}
 
 RUN conda create -n chap1 python=3.9
 RUN conda run -n chap1 pip install -r Chapter01/requirements.txt

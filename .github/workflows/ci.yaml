@@ -19,7 +19,12 @@ jobs:
         id: build
         run: |
           cd docker
-          docker build . -t graph-machine-learning:latest --no-cache 
+
+	  BRANCH=${{ github.ref_name }}
+	  echo "Building for branch ${BRANCH}"
+
+          docker build . -t graph-machine-learning:latest \
+	  	 --no-cache --build-arg branch=${BRANCH}
 
       - name: Test Image
         id: tests
